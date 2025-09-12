@@ -1,14 +1,16 @@
 package Adam.Self.PasswordManager.model;
 
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
-@Document(collection = "vault_entries")
+@Entity
+@Table(name = "Vaults")
 public class VaultEntry {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
+    @Column(unique = true, nullable = false)
     private String userId;
     private String encryptedData;
     private String serviceName;

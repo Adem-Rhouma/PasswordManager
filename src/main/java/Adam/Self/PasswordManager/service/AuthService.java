@@ -10,18 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    public String register(String email, String password){
-        if(userRepository.findByEmail(email).isPresent()){
-            throw new RuntimeException("Email Already Exists");
-        }
-        User user = new User();
-        
-    }
 
 }
