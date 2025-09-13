@@ -23,6 +23,7 @@ public class DataSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Only seed if no users exist
+        System.out.println(vaultService.count());
         if (vaultService.count() == 0) {
             // Create default user
             User defaultUser = new User();
@@ -34,11 +35,6 @@ public class DataSeeder implements CommandLineRunner {
             userService.registerUser(defaultUser);
 
 
-            User TestUser = new User();
-            TestUser.setName("TestUser");
-            TestUser.setEmail("admin@example.com");
-            TestUser.setPasswordHash("admin1234567");
-            userService.registerUser(defaultUser);
 //            System.out.println(Brian.getPasswordHash());
 //            userRepository.save(defaultUser);
 
