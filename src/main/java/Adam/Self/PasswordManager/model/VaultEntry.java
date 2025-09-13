@@ -1,32 +1,43 @@
 package Adam.Self.PasswordManager.model;
 
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.sql.Timestamp;
+
+
+@Getter
+@Setter
 @Entity
-@Table(name = "Vaults")
+@Table(name = "vault")
 public class VaultEntry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-    @Column(unique = true, nullable = false)
-    private String userId;
-    private String encryptedData;
-    private String serviceName;
+    @Column(name = "vault_id")
+    private Long vaultID;
 
+    @Column(name = "vault_name", nullable = false, length = 100)
+    private String vaultName;
 
-    public String getId() {return id;}
-    public void setId(String id) {this.id = id;}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    public String getUserId() {return userId;}
-    public void setUserId(String userId) {this.userId = userId;}
+    private String website;
+    private String username;
+    private String email;
 
-    public String getEncryptedData() {return encryptedData;}
-    public void setEncryptedData(String encryptedData) {this.encryptedData = encryptedData;}
+    @Column(name = "password_encrypted", nullable = false, columnDefinition = "TEXT")
+    private String passwordEncrypted;
 
-    public String getServiceName() {return serviceName;}
-    public void setServiceName(String serviceName) {this.serviceName = serviceName;}
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Timestamp createdAt;
 
 
 }

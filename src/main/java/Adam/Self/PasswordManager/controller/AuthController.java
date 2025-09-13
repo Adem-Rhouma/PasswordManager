@@ -24,16 +24,16 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user){
         User existingUser = userService.findByEmail(user.getEmail());
-    
+
         if (existingUser == null){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid");
         }
 
-        if (!user.getPassword().equals(existingUser.getPassword())){
+        if (!user.getPasswordHash().equals(existingUser.getPasswordHash())){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid");
         }
 
-        existingUser.setPassword(null);
+        existingUser.setPasswordHash(null);
         return ResponseEntity.ok(existingUser);
     }
 }
