@@ -46,7 +46,15 @@ public class JwtUtil {
 
     // Extract claims
     public Claims getClaims(String token) {
-        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+        token = token.trim(); // remove leading/trailing spaces
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7); // remove "Bearer " prefix
+        }
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     public Long getUserId(String token) {

@@ -60,9 +60,9 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid");
         }
 
-        String token = jwtUtil.generateToken(existingUser.getUserID(), existingUser.getEmail());
+        String token = jwtUtil.generateToken(existingUser.getId(), existingUser.getEmail());
 
 
-        return ResponseEntity.ok(new AuthResponse(token, existingUser.getUserID(), existingUser.getEmail()));
+        return ResponseEntity.ok(new AuthResponse(token, existingUser.getId(), existingUser.getEmail()));
     }
 }

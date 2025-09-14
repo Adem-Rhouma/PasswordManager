@@ -1,5 +1,6 @@
 package Adam.Self.PasswordManager.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long UserID;
+    private Long id;
 
     @Column(nullable = false, length = 100)
     private String name;
@@ -30,6 +31,7 @@ public class User {
     private String passwordHash ;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<VaultEntry> vaultEntries;
 
     @CreationTimestamp

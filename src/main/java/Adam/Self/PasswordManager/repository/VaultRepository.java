@@ -9,6 +9,5 @@ import java.util.List;
 
 @Repository
 public interface VaultRepository extends JpaRepository<VaultEntry, Long> {
-    // Custom query method to find user by email
-    List<VaultEntry> findByUser(User user);
+    List<VaultEntry> findByUser_Id(Long userUserID);
 }
