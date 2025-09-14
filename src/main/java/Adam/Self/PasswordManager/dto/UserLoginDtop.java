@@ -15,6 +15,7 @@ public class UserLoginDtop {
     @NotBlank(message = "Email is required")
     private String email;
 
+    @NotBlank
     @Size(min = 8)
     private String password;
 }

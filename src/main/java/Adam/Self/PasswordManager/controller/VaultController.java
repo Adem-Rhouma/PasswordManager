@@ -20,12 +20,10 @@ public class VaultController {
 
     private final VaultService vaultService;
     private final JwtUtil jwtUtil;
-    private final VaultRepository vaultRepository;
 
-    public VaultController(VaultService vaultService, JwtUtil jwtUtil, VaultRepository vaultRepository) {
+    public VaultController(VaultService vaultService, JwtUtil jwtUtil) {
         this.vaultService = vaultService;
         this.jwtUtil = jwtUtil;
-        this.vaultRepository = vaultRepository;
     }
 
     @GetMapping

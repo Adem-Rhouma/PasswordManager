@@ -6,7 +6,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -24,9 +23,9 @@ public class UserService {
     }
 
 
-    public User registerUser(User user) {
+    public void registerUser(User user) {
         try {
-            return userRepository.save(user);
+            userRepository.save(user);
         }catch (DataIntegrityViolationException e){
             throw new RuntimeException("User already exists");
         }catch (Exception e){
